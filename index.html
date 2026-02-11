@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="血液型占い - あなたの血液型で性格や運勢を診断します">
+    <title>血液型占い - Ketsueki-gata Uranai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .blood-type-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blood-type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="text-3xl">🩸</div>
+                    <h1 class="text-2xl font-bold text-purple-700">血液型占い</h1>
+                </div>
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="#home" class="text-gray-700 hover:text-purple-600 transition">ホーム</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-purple-600 transition">血液型について</a></li>
+                    <li><a href="#fortune" class="text-gray-700 hover:text-purple-600 transition">占い</a></li>
+                    <li><a href="#contact" class="text-gray-700 hover:text-purple-600 transition">お問い合わせ</a></li>
+                </ul>
+                <button id="menuBtn" class="md:hidden text-purple-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600 transition">ホーム</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-purple-600 transition">血液型について</a>
+                <a href="#fortune" class="block py-2 text-gray-700 hover:text-purple-600 transition">占い</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-purple-600 transition">お問い合わせ</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="container mx-auto px-4 py-16 text-center fade-in">
+        <h2 class="text-4xl md:text-6xl font-bold text-purple-800 mb-6">
+            あなたの血液型を教えてください
+        </h2>
+        <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            血液型から、あなたの性格や今日の運勢を占います。<br>
+            日本で古くから親しまれている血液型占いで、新しい自分を発見しましょう。
+        </p>
+        <div class="flex justify-center space-x-4">
+            <a href="#fortune" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-full transition shadow-lg">
+                占いを始める
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl md:text-4xl font-bold text-center text-purple-800 mb-12">
+                血液型占いとは？
+            </h3>
+            <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
+                <p class="text-lg leading-relaxed">
+                    血液型占いは、日本で広く信じられている性格診断の一つです。A型、B型、O型、AB型の4つの血液型によって、
+                    人の性格や相性が異なるとされています。
+                </p>
+                <p class="text-lg leading-relaxed">
+                    この占いは、科学的根拠は明確ではありませんが、コミュニケーションのきっかけや自己理解のツールとして、
+                    多くの人々に親しまれています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blood Type Fortune Section -->
+    <section id="fortune" class="container mx-auto px-4 py-16">
+        <h3 class="text-3xl md:text-4xl font-bold text-center text-purple-800 mb-12">
+            血液型を選んでください
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <!-- A Type -->
+            <div class="blood-type-card bg-white rounded-2xl shadow-lg p-8 cursor-pointer" onclick="showFortune('A')">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🅰️</div>
+                    <h4 class="text-2xl font-bold text-red-600 mb-3">A型</h4>
+                    <p class="text-gray-600">几帳面で真面目</p>
+                </div>
+            </div>
+
+            <!-- B Type -->
+            <div class="blood-type-card bg-white rounded-2xl shadow-lg p-8 cursor-pointer" onclick="showFortune('B')">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🅱️</div>
+                    <h4 class="text-2xl font-bold text-blue-600 mb-3">B型</h4>
+                    <p class="text-gray-600">自由奔放でマイペース</p>
+                </div>
+            </div>
+
+            <!-- O Type -->
+            <div class="blood-type-card bg-white rounded-2xl shadow-lg p-8 cursor-pointer" onclick="showFortune('O')">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🅾️</div>
+                    <h4 class="text-2xl font-bold text-orange-600 mb-3">O型</h4>
+                    <p class="text-gray-600">おおらかでリーダー気質</p>
+                </div>
+            </div>
+
+            <!-- AB Type -->
+            <div class="blood-type-card bg-white rounded-2xl shadow-lg p-8 cursor-pointer" onclick="showFortune('AB')">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🆎</div>
+                    <h4 class="text-2xl font-bold text-purple-600 mb-3">AB型</h4>
+                    <p class="text-gray-600">二面性があり個性的</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fortune Result -->
+        <div id="fortuneResult" class="hidden mt-12 max-w-3xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
+                <div class="text-center mb-6">
+                    <div id="resultEmoji" class="text-6xl mb-4"></div>
+                    <h4 id="resultType" class="text-3xl font-bold text-purple-800 mb-4"></h4>
+                </div>
+                <div id="resultContent" class="space-y-4 text-gray-700"></div>
+                <div class="mt-8 text-center">
+                    <button onclick="resetFortune()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-full transition">
+                        もう一度占う
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl md:text-4xl font-bold text-center text-purple-800 mb-12">
+                血液型の特徴
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 shadow-md">
+                    <h5 class="text-xl font-bold text-red-700 mb-3">A型の特徴</h5>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>✓ 真面目で几帳面</li>
+                        <li>✓ 協調性が高い</li>
+                        <li>✓ 細かいことに気づく</li>
+                        <li>✓ 計画的に物事を進める</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 shadow-md">
+                    <h5 class="text-xl font-bold text-blue-700 mb-3">B型の特徴</h5>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>✓ 自由奔放でマイペース</li>
+                        <li>✓ 創造性が豊か</li>
+                        <li>✓ 好奇心旺盛</li>
+                        <li>✓ 独自の感性を持つ</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 shadow-md">
+                    <h5 class="text-xl font-bold text-orange-700 mb-3">O型の特徴</h5>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>✓ おおらかで社交的</li>
+                        <li>✓ リーダーシップがある</li>
+                        <li>✓ 現実的で行動力がある</li>
+                        <li>✓ ロマンチスト</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 shadow-md">
+                    <h5 class="text-xl font-bold text-purple-700 mb-3">AB型の特徴</h5>
+                    <ul class="text-gray-700 space-y-2">
+                        <li>✓ 二面性があり複雑</li>
+                        <li>✓ 合理的で冷静</li>
+                        <li>✓ 個性的で芸術的</li>
+                        <li>✓ バランス感覚が良い</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="text-4xl mb-4">🩸</div>
+                <h4 class="text-2xl font-bold mb-4">血液型占い</h4>
+                <p class="text-gray-400 mb-6 max-w-md mx-auto">
+                    血液型から、あなたの性格や運勢を診断します。<br>
+                    毎日の生活に楽しさと発見を。
+                </p>
+                <div class="border-t border-gray-700 pt-6 mt-6">
+                    <p class="text-gray-500 text-sm">
+                        &copy; 2024 血液型占い - Ketsueki-gata Uranai. All rights reserved.
+                    </p>
+                    <p class="text-gray-600 text-xs mt-2">
+                        ※この占いは娯楽を目的としたものです。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fortune data
+        const fortuneData = {
+            'A': {
+                emoji: '🅰️',
+                type: 'A型',
+                personality: '真面目で几帳面なA型のあなた',
+                description: 'A型の方は、几帳面で真面目、協調性が高いのが特徴です。細かいことによく気づき、計画的に物事を進めることが得意です。',
+                today: '今日の運勢：仕事運が好調です。細部への注意が成功の鍵となります。',
+                lucky: 'ラッキーカラー：青',
+                advice: 'たまには計画を立てずに、自由な時間を楽しんでみましょう。'
+            },
+            'B': {
+                emoji: '🅱️',
+                type: 'B型',
+                personality: '自由奔放でマイペースなB型のあなた',
+                description: 'B型の方は、自由奔放でマイペース、創造性が豊かなのが特徴です。好奇心旺盛で独自の感性を持っています。',
+                today: '今日の運勢：新しいアイデアが浮かぶ日です。直感を信じて行動してみましょう。',
+                lucky: 'ラッキーカラー：黄色',
+                advice: '他人の意見にも耳を傾けると、さらに視野が広がります。'
+            },
+            'O': {
+                emoji: '🅾️',
+                type: 'O型',
+                personality: 'おおらかでリーダー気質なO型のあなた',
+                description: 'O型の方は、おおらかで社交的、リーダーシップがあるのが特徴です。現実的で行動力があり、ロマンチストな一面も。',
+                today: '今日の運勢：対人運が良好です。周囲の人と積極的にコミュニケーションを取りましょう。',
+                lucky: 'ラッキーカラー：赤',
+                advice: '細かいことにも目を向けると、より良い結果が得られます。'
+            },
+            'AB': {
+                emoji: '🆎',
+                type: 'AB型',
+                personality: '二面性があり個性的なAB型のあなた',
+                description: 'AB型の方は、二面性があり複雑、合理的で冷静なのが特徴です。個性的で芸術的、バランス感覚が良い方です。',
+                today: '今日の運勢：直感が冴える日です。芸術的な活動や創作活動がおすすめです。',
+                lucky: 'ラッキーカラー：紫',
+                advice: '感情を素直に表現することで、周囲との距離が縮まります。'
+            }
+        };
+
+        function showFortune(type) {
+            const data = fortuneData[type];
+            const resultDiv = document.getElementById('fortuneResult');
+            const emojiDiv = document.getElementById('resultEmoji');
+            const typeDiv = document.getElementById('resultType');
+            const contentDiv = document.getElementById('resultContent');
+
+            emojiDiv.textContent = data.emoji;
+            typeDiv.textContent = data.type;
+            contentDiv.innerHTML = `
+                <h5 class="text-xl font-bold text-purple-700 mb-3">${data.personality}</h5>
+                <p class="text-lg mb-4">${data.description}</p>
+                <div class="bg-purple-50 rounded-lg p-4 mb-4">
+                    <p class="font-semibold text-purple-800">${data.today}</p>
+                </div>
+                <p class="mb-2"><span class="font-semibold">🍀 ${data.lucky}</span></p>
+                <div class="bg-gray-50 rounded-lg p-4 mt-4">
+                    <p class="text-gray-700"><span class="font-semibold">💡 アドバイス：</span>${data.advice}</p>
+                </div>
+            `;
+
+            resultDiv.classList.remove('hidden');
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetFortune() {
+            document.getElementById('fortuneResult').classList.add('hidden');
+            document.getElementById('fortune').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
